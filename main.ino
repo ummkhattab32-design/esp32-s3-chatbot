@@ -16,6 +16,10 @@ String input = "";
 String history[6];
 int historyCount = 0;
 
+// Color definitions (since ST7735_DARKGREY may not exist)
+#define DARKGREY  0x4208
+#define LIGHTGREY 0x8410
+
 // ----------------------
 // Helper functions
 // ----------------------
@@ -42,7 +46,7 @@ void renderScreen() {
   tft.println("TinyAI-128");
 
   // Divider line
-  tft.drawFastHLine(0, 16, 128, ST7735_DARKGREY);
+  tft.drawFastHLine(0, 16, 128, DARKGREY);
 
   // Display the last 4 messages
   int y = 20;
@@ -56,7 +60,7 @@ void renderScreen() {
   }
 
   // Input area divider
-  tft.drawFastHLine(0, 96, 128, ST7735_DARKGREY);
+  tft.drawFastHLine(0, 96, 128, DARKGREY);
   
   // Input label and text
   tft.setCursor(2, 100);
@@ -113,8 +117,8 @@ void setup() {
   delay(100);
 
   // Init Adafruit display
-  // For ST7735 128x128:
-  tft.initR(INITR_MINI160x128);
+  // Use INITR_MINI160x80 for 128x128 displays
+  tft.initR(INITR_MINI160x80);
   tft.setRotation(1);
   tft.fillScreen(ST7735_BLACK);
 
